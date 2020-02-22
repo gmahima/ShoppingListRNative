@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {View, Text, StyleSheet, FlatList} from 'react-native'
+import {View, Text, StyleSheet, FlatList, Alert} from 'react-native'
 import styled from 'styled-components/native'
 import Header from './components/Header'
 import {uuid} from 'uuidv4'
@@ -19,7 +19,11 @@ const handleRemoveItem = (id) => {
   setItems(items.filter((i) => (i.id!== id)))
 }
 const handleAddItem = (name) =>{
-  setItems([{name, id: uuid()}, ...items])
+  if(!name){
+    Alert.alert('Error', 'enter an item', [{text: 'ok'}])
+  }
+
+  else {setItems([{name, id: uuid()}, ...items])}
 }
   return(
     <View style={styles.container}>

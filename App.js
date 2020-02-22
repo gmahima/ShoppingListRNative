@@ -4,6 +4,7 @@ import styled from 'styled-components/native'
 import Header from './components/Header'
 import {uuid} from 'uuidv4'
 import ListItem from './components/ListItem'
+import AddItem from './components/AddItem'
 
 const App = () => {
   const [items, setItems] = useState([
@@ -17,11 +18,15 @@ const handleRemoveItem = (id) => {
   console.log("hi")
   setItems((prevItems) => prevItems.filter((i) => (i.id!== id)))
 }
+const handleAddItem = (name) =>{
+  setItems([...items, {name, id: uuid()}])
+}
   return(
     <View style={styles.container}>
       <Header title='My Shopping List'></Header>
+      <AddItem addItem={handleAddItem}/>
       <FlatList data={items} renderItem={({item}) => (<ListItem item={item} removeItem={handleRemoveItem}/>)} />
-  {/*obj has index, item, seperator*/}
+
     </View>
   )
 }

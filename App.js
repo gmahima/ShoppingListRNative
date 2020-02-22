@@ -16,10 +16,10 @@ const App = () => {
 ])
 const handleRemoveItem = (id) => {
   console.log("hi")
-  setItems((prevItems) => prevItems.filter((i) => (i.id!== id)))
+  setItems(items.filter((i) => (i.id!== id)))
 }
 const handleAddItem = (name) =>{
-  setItems([...items, {name, id: uuid()}])
+  setItems([{name, id: uuid()}, ...items])
 }
   return(
     <View style={styles.container}>
